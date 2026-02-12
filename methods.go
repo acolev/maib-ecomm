@@ -22,6 +22,10 @@ func (c *Client) GenerateToken(ctx context.Context) (*TokenResponse, error) {
 		return nil, err
 	}
 
+	if res.AccessToken == "" {
+		return nil, fmt.Errorf("generate-token response missing accessToken")
+	}
+
 	// Cache the token
 	c.tokenMu.Lock()
 	c.accessToken = res.AccessToken
