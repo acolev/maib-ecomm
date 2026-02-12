@@ -132,6 +132,36 @@ if resp.Status == "OK" {
 }
 ```
 
+### 5. Возврат средств (Refund)
+
+```go
+resp, err := client.Refund(ctx, &maib.RefundRequest{
+    PayID:        "ID_ТРАНЗАКЦИИ",
+    RefundAmount: 50.00, // Опционально. Если не указать, вернется вся сумма.
+})
+
+if err != nil {
+    log.Fatal(err)
+}
+fmt.Printf("Возврат успешен: %s\n", resp.Status)
+```
+
+### 6. Удаление сохраненной карты
+
+```go
+err := client.DeleteCard(ctx, "BILLER_ID_ДЛЯ_УДАЛЕНИЯ")
+if err != nil {
+    log.Printf("Ошибка удаления карты: %v", err)
+} else {
+    fmt.Println("Карта успешно удалена")
+}
+```
+
+### 7. Helper методы
+
+*   `GenerateToken(ctx)`: Обычно вызывается автоматически, но можно вызвать вручную для получения токена.
+*   `ParseCallback(r)`: Проверяет подпись и возвращает типизированную структуру `CallbackData`.
+
 ## Ссылки
 
 *   [Официальная документация](https://docs.maibmerchants.md/e-commerce/maib-e-commerce-api)
