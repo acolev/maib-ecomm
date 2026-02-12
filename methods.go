@@ -179,6 +179,14 @@ func (c *Client) doRequest(ctx context.Context, method, endpoint string, body in
 		bodyReader = bytes.NewBuffer(jsonBody)
 	}
 
+	if c.debug {
+		fmt.Printf("[Maib-Debug] Request: %s %s\n", method, c.baseURL+endpoint)
+		if body != nil {
+			b, _ := json.Marshal(body)
+			fmt.Printf("[Maib-Debug] Request Body: %s\n", string(b))
+		}
+	}
+
 	req, err := http.NewRequestWithContext(ctx, method, c.baseURL+endpoint, bodyReader)
 	if err != nil {
 		return fmt.Errorf("failed to create request: %w", err)
@@ -204,6 +212,11 @@ func (c *Client) doRequest(ctx context.Context, method, endpoint string, body in
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return fmt.Errorf("failed to read response body: %w", err)
+	}
+
+	if c.debug {
+		fmt.Printf("[Maib-Debug] Response Status: %d\n", resp.StatusCode)
+		fmt.Printf("[Maib-Debug] Response Body: %s\n", string(respBody))
 	}
 
 	// Check for API errors (JSON with "ok": false)

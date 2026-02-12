@@ -15,16 +15,18 @@ type Client struct {
 	projectID     string
 	projectSecret string
 	signatureKey  string
-	
+
 	baseURL    string
 	httpClient *http.Client
 
 	// Token management
-	tokenMu          sync.RWMutex
-	accessToken      string
-	refreshToken     string
-	accessTokenExp   time.Time
-	refreshTokenExp  time.Time
+	tokenMu         sync.RWMutex
+	accessToken     string
+	refreshToken    string
+	accessTokenExp  time.Time
+	refreshTokenExp time.Time
+
+	debug bool
 }
 
 // NewClient creates a new Maib client with the given options.
@@ -78,5 +80,12 @@ func WithHTTPClient(client *http.Client) Option {
 func WithBaseURL(url string) Option {
 	return func(c *Client) {
 		c.baseURL = url
+	}
+}
+
+// WithDebug enables debug logging to stdout.
+func WithDebug(enable bool) Option {
+	return func(c *Client) {
+		c.debug = enable
 	}
 }
