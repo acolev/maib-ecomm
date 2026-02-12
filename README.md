@@ -1,7 +1,7 @@
 # Maib E-commerce Go Package
 
-![Go Version](https://img.shields.io/github/go-mod/go-version/attar/maib)
-[![GoDoc](https://godoc.org/github.com/attar/maib?status.svg)](https://godoc.org/github.com/attar/maib)
+![Go Version](https://img.shields.io/github/go-mod/go-version/acolev/maib-ecomm)
+[![GoDoc](https://godoc.org/github.com/acolev/maib-ecomm?status.svg)](https://godoc.org/github.com/acolev/maib-ecomm)
 
 A robust, idiomatic Go client for the Maib E-commerce API. This package provides a simple interface to process payments, manage recurring billing, and handle callbacks with automatic signature verification.
 
@@ -20,7 +20,7 @@ A robust, idiomatic Go client for the Maib E-commerce API. This package provides
 ## Installation
 
 ```bash
-go get github.com/attar/maib
+go get github.com/acolev/maib-ecomm
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ go get github.com/attar/maib
 You need your Project ID, Project Secret, and Signature Key (for callbacks) from the Maib merchant portal.
 
 ```go
-import "github.com/attar/maib"
+import "github.com/acolev/maib-ecomm"
 
 client := maib.NewClient(
     maib.WithProjectID("YOUR_PROJECT_ID"),

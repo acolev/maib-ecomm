@@ -1,7 +1,7 @@
 # Maib E-commerce Client на Golang
 
-![Go Version](https://img.shields.io/github/go-mod/go-version/attar/maib)
-[![GoDoc](https://godoc.org/github.com/attar/maib?status.svg)](https://godoc.org/github.com/attar/maib)
+![Go Version](https://img.shields.io/github/go-mod/go-version/acolev/maib-ecomm)
+[![GoDoc](https://godoc.org/github.com/acolev/maib-ecomm?status.svg)](https://godoc.org/github.com/acolev/maib-ecomm)
 
 Надежный и идиоматичный клиент на Go для API электронной коммерции Maib. Этот пакет предоставляет простой интерфейс для обработки платежей, управления регулярными списаниями и обработки колбэков с автоматической проверкой подписи.
 
@@ -20,7 +20,7 @@
 ## Установка
 
 ```bash
-go get github.com/attar/maib
+go get github.com/acolev/maib-ecomm
 ```
 
 ## Использование
@@ -30,7 +30,7 @@ go get github.com/attar/maib
 Вам понадобятся Project ID, Project Secret и Signature Key (для колбэков) из личного кабинета мерчанта Maib.
 
 ```go
-import "github.com/attar/maib"
+import "github.com/acolev/maib-ecomm"
 
 client := maib.NewClient(
     maib.WithProjectID("ВАШ_PROJECT_ID"),
