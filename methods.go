@@ -214,11 +214,11 @@ func (c *Client) doRequest(ctx context.Context, method, endpoint string, body in
 
 	// If not an error, unmarshal into result
 	if result != nil {
-		if len(respBody) == 0 {
+		if len(bytes.TrimSpace(respBody)) == 0 {
 			return fmt.Errorf("empty response body")
 		}
 		if err := json.Unmarshal(respBody, result); err != nil {
-			return fmt.Errorf("failed to unmarshal response: %w. Body: %s", err, string(respBody))
+			return fmt.Errorf("failed to unmarshal response: %w. Body: %q", err, string(respBody))
 		}
 	} else {
 		// If result is nil, we just check if "ok" is true in strict mode, but here we assume if no error object, it's fine.
