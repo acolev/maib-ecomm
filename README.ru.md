@@ -36,6 +36,7 @@ client := maib.NewClient(
     maib.WithProjectID("ВАШ_PROJECT_ID"),
     maib.WithProjectSecret("ВАШ_PROJECT_SECRET"),
     maib.WithSignatureKey("ВАШ_SIGNATURE_KEY"), // Обязательно для проверки колбэков
+    maib.WithDebug(true), // Опционально: Включить логирование запросов
 )
 ```
 

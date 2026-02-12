@@ -36,6 +36,7 @@ client := maib.NewClient(
     maib.WithProjectID("YOUR_PROJECT_ID"),
     maib.WithProjectSecret("YOUR_PROJECT_SECRET"),
     maib.WithSignatureKey("YOUR_SIGNATURE_KEY"), // Required for callback validation
+    maib.WithDebug(true), // Optional: Enable debug logging
 )
 ```
 
