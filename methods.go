@@ -17,10 +17,17 @@ func (c *Client) GenerateToken(ctx context.Context) (*TokenResponse, error) {
 		"projectSecret": c.projectSecret,
 	}
 
-	var res TokenResponse
-	if err := c.doRequest(ctx, http.MethodPost, "/generate-token", reqBody, &res); err != nil {
+	// Response is wrapped in "result": { ... }
+	var wrapper struct {
+		Result TokenResponse `json:"result"`
+		Ok     bool          `json:"ok"`
+	}
+
+	if err := c.doRequest(ctx, http.MethodPost, "/generate-token", reqBody, &wrapper); err != nil {
 		return nil, err
 	}
+
+	res := wrapper.Result
 
 	if res.AccessToken == "" {
 		return nil, fmt.Errorf("generate-token response missing accessToken")
